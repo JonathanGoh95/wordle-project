@@ -1,9 +1,20 @@
 body {
-  background-color: lightgray;
+  background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  font-family: "Playfair Display", Tahoma, sans-serif;
+  font-style: italic;
+  font-size: 28px;
 }
 
 h1 {
   text-align: center;
+  font-family: "Playfair Display", Tahoma, sans-serif;
+  font-style: italic;
+  font-size: 64px;
 }
 
 #gameBoard {
@@ -14,7 +25,7 @@ h1 {
 
 .boxOfLetters {
   border: 2px solid black;
-  border-radius: 3px;
+  border-radius: 8px;
   margin: 2px;
   font-size: 2.5rem;
   font-weight: 700;
@@ -24,12 +35,41 @@ h1 {
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
+  background-color: white;
+}
+
+.rowOfLetters {
+  display: flex;
 }
 
 .filled {
   border: 2px solid black;
 }
 
-.rowOfLetters {
+#keyboardLayout {
+  margin: 1rem 0;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#keyboardLayout div {
+  display: flex;
+}
+
+.firstRow {
+  margin: 1rem 0 0 0;
+}
+
+.secondRow {
+  margin: 1rem 0;
+}
+
+.keyboardButton {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem 1.5rem;
+  margin: 0 2px;
+  cursor: pointer;
+  text-transform: uppercase;
 }

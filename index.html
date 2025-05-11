@@ -8,16 +8,56 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
       rel="stylesheet"
     />
-    <script defer src="./js/app.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tagesschrift&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="./js/app.js" type="module"></script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <h1>Wordle Game</h1>
     <div id="gameBoard"></div>
+    <div id="keyboardLayout">
+      <div class="firstRow">
+        <button class="keyboardButton">q</button>
+        <button class="keyboardButton">w</button>
+        <button class="keyboardButton">e</button>
+        <button class="keyboardButton">r</button>
+        <button class="keyboardButton">t</button>
+        <button class="keyboardButton">y</button>
+        <button class="keyboardButton">u</button>
+        <button class="keyboardButton">i</button>
+        <button class="keyboardButton">o</button>
+        <button class="keyboardButton">p</button>
+      </div>
+      <div class="secondRow">
+        <button class="keyboardButton">a</button>
+        <button class="keyboardButton">s</button>
+        <button class="keyboardButton">d</button>
+        <button class="keyboardButton">f</button>
+        <button class="keyboardButton">g</button>
+        <button class="keyboardButton">h</button>
+        <button class="keyboardButton">j</button>
+        <button class="keyboardButton">k</button>
+        <button class="keyboardButton">l</button>
+      </div>
+      <div class="thirdRow">
+        <button class="keyboardButton">Del</button>
+        <button class="keyboardButton">z</button>
+        <button class="keyboardButton">x</button>
+        <button class="keyboardButton">c</button>
+        <button class="keyboardButton">v</button>
+        <button class="keyboardButton">b</button>
+        <button class="keyboardButton">n</button>
+        <button class="keyboardButton">m</button>
+        <button class="keyboardButton">Enter</button>
+      </div>
+    </div>
   </body>
   <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
