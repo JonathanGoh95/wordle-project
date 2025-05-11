@@ -91,7 +91,7 @@ const checkAnswer = () => {
     document.getElementsByClassName("rowOfLetters")[6 - remainingGuesses];
   let guessString = "";
   let rightGuess = [...selectedWord];
-  //Append the user input to an empty string for checking
+  //Appends the user input to an empty string for checking
   for (const val of currentGuess) {
     guessString += val;
   }
@@ -101,14 +101,16 @@ const checkAnswer = () => {
     headerTitle.appendChild(gameMsg);
     // alert("Not enough letters!");
     return;
+  } else {
+    gameMsg.textContent = "";
   }
 
-  if (!wordsToGuess.includes(guessString)) {
-    gameMsg.textContent = "Word does not exist in list!";
-    headerTitle.appendChild(gameMsg);
-    // alert("Word not in list!");
-    return;
-  }
+  // if (!wordsToGuess.includes(guessString)) {
+  //   gameMsg.textContent = "Word does not exist in list!";
+  //   headerTitle.appendChild(gameMsg);
+  //   alert("Word not in list!");
+  //   return;
+  // }
 
   for (let i = 0; i < 5; i++) {
     let letterColor = "";
@@ -152,8 +154,11 @@ const checkAnswer = () => {
     nextLetter = 0;
 
     if (remainingGuesses === 0) {
-      gameMsg.textContent = `You have ran out of guesses! Game Over!
-      The right word was: "${selectedWord}`;
+      selectedWord = [...selectedWord]
+        .map((word) => word.toUpperCase())
+        .join("");
+      gameMsg.innerHTML = `You have ran out of guesses! Game Over!<br />
+      The right word was: "${selectedWord}"`;
       headerTitle.appendChild(gameMsg);
       //   alert("You've run out of guesses! Game over!");
       //   alert(`The right word was: "${selectedWord}"`);
