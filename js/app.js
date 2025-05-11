@@ -4,6 +4,7 @@ import { wordsToGuess } from "./wordsToGuess.js";
 //Declaration of Variables
 const headerTitle = document.querySelector("h1");
 const numberOfGuesses = 6;
+const resetButton = document.getElementById("resetGame");
 let remainingGuesses = numberOfGuesses;
 let currentGuess = []; //Array for holding the current word by user
 let nextLetter = 0;
@@ -201,4 +202,9 @@ document.getElementById("keyboardLayout").addEventListener("click", (event) => {
   document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
 });
 
+const resetGame = () => {
+  location.reload();
+};
+
+resetButton.addEventListener("click", resetGame);
 main();

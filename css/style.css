@@ -74,3 +74,10 @@ h1 {
   cursor: pointer;
   text-transform: uppercase;
 }
+
+#resetGame {
+  font-size: 28px;
+  margin: 20px 0;
+  background-color: lightsalmon;
+  border-radius: 5px;
+}
