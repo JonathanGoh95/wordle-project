@@ -8,20 +8,23 @@ const resetButton = document.getElementById("resetGame");
 let remainingGuesses = numberOfGuesses;
 let currentGuess = []; //Array for holding the current word by user
 let nextLetter = 0;
-let gameMsg = document.createElement("p");
+// let gameMsg = document.createElement("p");
+//Selects a random word to start playing
 let selectedWord =
-  wordsToGuess[Math.floor(Math.random() * wordsToGuess.length)]; //Selects a random word to start playing
+  wordsToGuess[Math.floor(Math.random() * wordsToGuess.length)];
+//Outputs the answer to the console for testing purposes
 console.log(selectedWord);
 
 //Function Declarations
+//Creates the game board using a nested for loop
 const main = () => {
   let gameBoard = document.getElementById("gameBoard");
-  //Creates a number of divs with the class name of 'letter-row', based on the value of the 'numberOfGuesses' variable
+  //Creates a number of divs with the class name of 'rowOfLetters', based on the value of the 'numberOfGuesses' variable
   for (let i = 0; i < numberOfGuesses; i++) {
     let rowOfLetters = document.createElement("div");
     rowOfLetters.className = "rowOfLetters";
 
-    //Creates 5 'boxes' to contain each word, for each row using a nested for loop
+    //Creates 5 'boxes' to contain each word for each row
     for (let j = 0; j < 5; j++) {
       let boxOfLetters = document.createElement("div");
       boxOfLetters.className = "boxOfLetters";
@@ -91,6 +94,7 @@ const checkAnswer = () => {
   let row =
     document.getElementsByClassName("rowOfLetters")[6 - remainingGuesses];
   let guessString = "";
+  //Converts the selected word/answer from the wordsToGuess.js file to an array for checking against the user input
   let rightGuess = [...selectedWord];
   //Appends the user input to an empty string for checking
   for (const val of currentGuess) {
@@ -98,20 +102,21 @@ const checkAnswer = () => {
   }
 
   if (guessString.length !== 5) {
-    gameMsg.textContent = "Not enough letters!";
-    headerTitle.appendChild(gameMsg);
-    // alert("Not enough letters!");
+    // gameMsg.textContent = "Not enough letters!";
+    // headerTitle.appendChild(gameMsg);
+    toastr.error("Not enough letters!");
     return;
-  } else {
-    gameMsg.textContent = "";
   }
-
-  // if (!wordsToGuess.includes(guessString)) {
-  //   gameMsg.textContent = "Word does not exist in list!";
-  //   headerTitle.appendChild(gameMsg);
-  //   alert("Word not in list!");
-  //   return;
+  // else {
+  //   gameMsg.textContent = "";
   // }
+
+  if (!wordsToGuess.includes(guessString)) {
+    // gameMsg.textContent = "This is not a valid word!";
+    // headerTitle.appendChild(gameMsg);
+    toastr.error("This is not a valid word!");
+    return;
+  }
 
   for (let i = 0; i < 5; i++) {
     let letterColor = "";
@@ -119,7 +124,7 @@ const checkAnswer = () => {
     let letter = currentGuess[i];
 
     let letterPosition = rightGuess.indexOf(currentGuess[i]);
-    // Check if letter is in the correct position
+    // Check if letter is in the correct position. If letter does not exist in word, shade it grey.
     if (letterPosition === -1) {
       letterColor = "grey";
     } else {
@@ -130,7 +135,6 @@ const checkAnswer = () => {
         // Shades the letter box yellow if letter is in the word but in the wrong position
         letterColor = "yellow";
       }
-
       rightGuess[letterPosition] = "#";
     }
     //Shade Animation
@@ -142,27 +146,28 @@ const checkAnswer = () => {
     }, delay);
   }
 
+  //Win Scenario
   if (guessString === selectedWord) {
-    gameMsg.textContent =
-      "Congrats! You guessed the word correctly! Game Over!";
-    headerTitle.appendChild(gameMsg);
-    // alert("You guessed right! Game over!");
+    // gameMsg.textContent =
+    //   "Congrats! You guessed the word correctly! Game Over!";
+    // headerTitle.appendChild(gameMsg);
+    toastr.success("Congrats! You guessed the word correctly! Game Over!");
     remainingGuesses = 0;
     return;
+    //Lose Scenario
   } else {
     remainingGuesses--;
     currentGuess = [];
     nextLetter = 0;
-
     if (remainingGuesses === 0) {
       selectedWord = [...selectedWord]
         .map((word) => word.toUpperCase())
         .join("");
-      gameMsg.innerHTML = `You have ran out of guesses! Game Over!<br />
-      The right word was: "${selectedWord}"`;
-      headerTitle.appendChild(gameMsg);
-      //   alert("You've run out of guesses! Game over!");
-      //   alert(`The right word was: "${selectedWord}"`);
+      // gameMsg.innerHTML = `You have ran out of guesses! Game Over!<br />
+      // The right word was: "${selectedWord}"`;
+      // headerTitle.appendChild(gameMsg);
+      toastr.error("You have ran out of guesses! Game Over!");
+      toastr.info(`The right word was: "${selectedWord}"`);
     }
   }
 };
@@ -189,7 +194,6 @@ const shadeKeyboard = (letter, color) => {
 //Input from On-Screen Keyboard
 document.getElementById("keyboardLayout").addEventListener("click", (event) => {
   const target = event.target;
-
   if (!target.classList.contains("keyboardButton")) {
     return;
   }
@@ -203,6 +207,14 @@ document.getElementById("keyboardLayout").addEventListener("click", (event) => {
 });
 
 const resetGame = () => {
+  // remainingGuesses = numberOfGuesses;
+  // currentGuess = []; //Array for holding the current word by user
+  // nextLetter = 0;
+  // for (const elem of document.getElementsByClassName("keyboardButton")) {
+  //   elem.style.backgroundColor = "";
+  // }
+  // document.getElementsByClassName("rowOfLetters").textContent = "";
+  // return;
   location.reload();
 };
 
