@@ -78,7 +78,9 @@ h1 {
 }
 
 #resetGame {
+  padding: 10px 20px;
   font-size: 28px;
+  font-style: italic;
   margin: 20px 0;
   background-color: lightsalmon;
   border-radius: 5px;
