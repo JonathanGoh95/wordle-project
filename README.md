@@ -50,3 +50,7 @@ However, the idea behind it was that by learning how others recreated the game, 
 I also learn best by recreating someone's else work, deconstructing it, and then find a better way of going about it.
 
 My philosophy is, "Don't reinvent the wheel. Analyse and observe how the wheel works, the thought process behind creating it, the mechanics of it, and then deconstruct it, and make it better through reconstructing."
+
+## Project Wireframe
+
+![Wireframe](https://github.com/JonathanGoh95/wordle-project/blob/main/images/ProjectWireframes.png)
