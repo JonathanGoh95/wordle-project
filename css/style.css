@@ -7,7 +7,7 @@ p {
   text-align: center;
   font-family: "Playfair Display", Tahoma, sans-serif;
   font-size: 32px;
-  font-style: normal;
+  font-style: italic;
   margin: 20px 0 -20px 0;
 }
 
@@ -16,6 +16,10 @@ h1 {
   font-family: "Playfair Display", Tahoma, sans-serif;
   font-style: italic;
   font-size: 80px;
+}
+
+h3 {
+  margin: 50px 0 10px;
 }
 
 #gameBoard {
@@ -98,5 +102,18 @@ h1 {
 
 #instructions {
   text-align: center;
-  font-size: 50px;
+  font-size: 40px;
+  font-style: italic;
+}
+
+#choices {
+  font-size: 25px;
+  font-style: italic;
+  margin: 0 0 20px 0;
+}
+
+select {
+  width: 40px;
+  height: 25px;
+  font-size: 20px;
 }

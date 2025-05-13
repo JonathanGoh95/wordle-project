@@ -21,16 +21,46 @@
   <body>
     <h1>Wordle Game</h1>
     <div id="instructions">
+      <h3>Instructions:</h3>
       <p>
-        <b><em>Instructions</em></b>
+        Input your guess via your keyboard OR the on-screen keyboard provided
+        and click/press the Enter key to submit your answer.
+      </p>
+      <h3>Box Background Colour Indicators:</h3>
+      <p>
+        <span style="color: green">Green</span>: Letter exists in the word and
+        is in the
+        <span style="text-decoration: underline">right</span> position.<br />
+        <span style="color: yellow">Yellow</span>: Letter exists in the word but
+        is in the
+        <span style="text-decoration: underline">wrong</span> position.<br />
+        <span style="color: grey">Grey</span>: Letter
+        <span style="text-decoration: underline">does not exist</span> in the
+        word.
       </p>
       <br />
       <p>
-        Input your guess via your keyboard or the on-screen keyboard provided.
+        Select your difficulty levels and Click the Start Game button below to
+        start playing!
       </p>
       <br />
-      <p>Click the Start Game button below to start playing!</p>
-      <br />
+      <div id="choices">
+        <label for="wordlen">Choose your Word Length:</label>
+        <select id="wordlen" name="wordlen">
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option></select
+        ><br /><br />
+        <label for="attempts">Choose your Number of Attempts:</label>
+        <select id="attempts" name="attempts">
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
       <button id="startGame">Start Game</button>
     </div>
     <div id="gameBoard"></div>

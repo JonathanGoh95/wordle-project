@@ -3,13 +3,15 @@ import { wordsToGuess } from "./wordsToGuess.js";
 
 //Declaration of Variables
 const headerTitle = document.querySelector("h1");
-const numberOfGuesses = 6;
+// const numberOfGuesses = 6;
 const instructions = document.getElementById("instructions");
 const resetButton = document.getElementById("resetGame");
 const startButton = document.getElementById("startGame");
 const keyboard = document.getElementById("keyboardLayout");
+const wordlen = document.getElementById("wordlen");
+const attempts = document.getElementById("attempts");
 let gameBoard = document.getElementById("gameBoard");
-let remainingGuesses = numberOfGuesses;
+let remainingGuesses = attempts.value;
 let currentGuess = []; //Array for holding the current word by user
 let nextLetter = 0;
 // let gameMsg = document.createElement("p");
@@ -26,12 +28,12 @@ const main = () => {
   keyboard.style.display = "flex";
   resetButton.style.display = "block";
   //Creates a number of divs with the class name of 'rowOfLetters', based on the value of the 'numberOfGuesses' variable
-  for (let i = 0; i < numberOfGuesses; i++) {
+  for (let i = 0; i < attempts.value; i++) {
     let rowOfLetters = document.createElement("div");
     rowOfLetters.className = "rowOfLetters";
 
     //Creates 5 'boxes' to contain each word for each row
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < wordlen.value; j++) {
       let boxOfLetters = document.createElement("div");
       boxOfLetters.className = "boxOfLetters";
       rowOfLetters.appendChild(boxOfLetters);
@@ -78,7 +80,9 @@ const insertLetter = (userInput) => {
   userInput = userInput.toLowerCase();
 
   let row =
-    document.getElementsByClassName("rowOfLetters")[6 - remainingGuesses];
+    document.getElementsByClassName("rowOfLetters")[
+      attempts.value - remainingGuesses
+    ];
   let box = row.children[nextLetter];
   box.textContent = userInput;
   box.classList.add("filledBox");
@@ -88,7 +92,9 @@ const insertLetter = (userInput) => {
 
 const deleteLetter = () => {
   let row =
-    document.getElementsByClassName("rowOfLetters")[6 - remainingGuesses];
+    document.getElementsByClassName("rowOfLetters")[
+      attempts.value - remainingGuesses
+    ];
   let box = row.children[nextLetter - 1];
   box.textContent = "";
   box.classList.remove("filledBox");
@@ -223,13 +229,13 @@ const resetGame = () => {
   instructions.style.display = "block";
   keyboard.style.display = "none";
   resetButton.style.display = "none";
-  for (let i = 0; i < numberOfGuesses; i++) {
+  for (let i = 0; i < attempts.value; i++) {
     document.querySelector(".rowOfLetters").remove();
     // let rowOfLetters = document.createElement("div");
     // rowOfLetters.className = "rowOfLetters";
 
     //Creates 5 'boxes' to contain each word for each row
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < wordlen.value; j++) {
       document.querySelector(".boxOfLetters").remove();
       // let boxOfLetters = document.createElement("div");
       // boxOfLetters.className = "boxOfLetters";
