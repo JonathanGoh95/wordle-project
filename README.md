@@ -39,17 +39,9 @@ Players shall have six attempts to guess a five-letter word. After each guess, t
 
 ## Deployment
 
-The game is deployed on GitHub pages, which can be played here: ...
+The game is deployed on GitHub pages, which can be played here: jonathangoh95.github.io/wordle-project/
 
 ## Summary
-
-As this was my first time creating a project in a very tight timeframe, it was considered extremely ambitious for me to recreate the Tetris game.
-
-However, the idea behind it was that by learning how others recreated the game, I would understand the logic flow behind it and how they linked the HTML, CSS and JS together. This would then allow me to create a game from scratch.
-
-I also learn best by recreating someone's else work, deconstructing it, and then find a better way of going about it.
-
-My philosophy is, "Don't reinvent the wheel. Analyse and observe how the wheel works, the thought process behind creating it, the mechanics of it, and then deconstruct it, and make it better through reconstructing."
 
 ## Project Wireframes
 
