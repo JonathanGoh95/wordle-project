@@ -8,6 +8,7 @@ const instructions = document.getElementById("instructions");
 const resetButton = document.getElementById("resetGame");
 const startButton = document.getElementById("startGame");
 const keyboard = document.getElementById("keyboardLayout");
+let gameBoard = document.getElementById("gameBoard");
 let remainingGuesses = numberOfGuesses;
 let currentGuess = []; //Array for holding the current word by user
 let nextLetter = 0;
@@ -22,8 +23,6 @@ console.log(selectedWord);
 //Creates the game board using a nested for loop
 const main = () => {
   instructions.style.display = "none";
-  startButton.style.display = "none";
-  let gameBoard = document.getElementById("gameBoard");
   keyboard.style.display = "flex";
   resetButton.style.display = "block";
   //Creates a number of divs with the class name of 'rowOfLetters', based on the value of the 'numberOfGuesses' variable
@@ -214,15 +213,30 @@ document.getElementById("keyboardLayout").addEventListener("click", (event) => {
 });
 
 const resetGame = () => {
-  // remainingGuesses = numberOfGuesses;
-  // currentGuess = []; //Array for holding the current word by user
-  // nextLetter = 0;
-  // for (const elem of document.getElementsByClassName("keyboardButton")) {
-  //   elem.style.backgroundColor = "";
-  // }
-  // document.getElementsByClassName("rowOfLetters").textContent = "";
-  // return;
-  location.reload();
+  remainingGuesses = numberOfGuesses;
+  currentGuess = []; //Array for holding the current word by user
+  nextLetter = 0;
+  for (const elem of document.getElementsByClassName("keyboardButton")) {
+    elem.style.backgroundColor = "";
+  }
+  document.getElementsByClassName("rowOfLetters").textContent = "";
+  instructions.style.display = "block";
+  keyboard.style.display = "none";
+  resetButton.style.display = "none";
+  for (let i = 0; i < numberOfGuesses; i++) {
+    document.querySelector(".rowOfLetters").remove();
+    // let rowOfLetters = document.createElement("div");
+    // rowOfLetters.className = "rowOfLetters";
+
+    //Creates 5 'boxes' to contain each word for each row
+    for (let j = 0; j < 5; j++) {
+      document.querySelector(".boxOfLetters").remove();
+      // let boxOfLetters = document.createElement("div");
+      // boxOfLetters.className = "boxOfLetters";
+      // rowOfLetters.appendChild(boxOfLetters);
+    }
+  }
+  // location.reload();
 };
 
 startButton.addEventListener("click", main);
