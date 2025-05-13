@@ -1,11 +1,17 @@
 body {
-  background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(108, 169, 101, 0.9) 0%,
+    rgba(200, 182, 83, 0.9) 50%,
+    rgba(120, 124, 127, 0.9) 100%
+  );
   text-align: center;
+  color: black;
+  font-family: "Tagesschrift", Tahoma, sans-serif;
 }
 
 p {
   text-align: center;
-  font-family: "Playfair Display", Tahoma, sans-serif;
   font-size: 32px;
   font-style: italic;
   margin: 20px 0 -20px 0;
@@ -13,7 +19,6 @@ p {
 
 h1 {
   text-align: center;
-  font-family: "Playfair Display", Tahoma, sans-serif;
   font-style: italic;
   font-size: 80px;
 }
