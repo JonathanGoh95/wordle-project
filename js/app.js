@@ -4,7 +4,10 @@ import { wordsToGuess } from "./wordsToGuess.js";
 //Declaration of Variables
 const headerTitle = document.querySelector("h1");
 const numberOfGuesses = 6;
+const instructions = document.getElementById("instructions");
 const resetButton = document.getElementById("resetGame");
+const startButton = document.getElementById("startGame");
+const keyboard = document.getElementById("keyboardLayout");
 let remainingGuesses = numberOfGuesses;
 let currentGuess = []; //Array for holding the current word by user
 let nextLetter = 0;
@@ -18,7 +21,11 @@ console.log(selectedWord);
 //Function Declarations
 //Creates the game board using a nested for loop
 const main = () => {
+  instructions.style.display = "none";
+  startButton.style.display = "none";
   let gameBoard = document.getElementById("gameBoard");
+  keyboard.style.display = "flex";
+  resetButton.style.display = "block";
   //Creates a number of divs with the class name of 'rowOfLetters', based on the value of the 'numberOfGuesses' variable
   for (let i = 0; i < numberOfGuesses; i++) {
     let rowOfLetters = document.createElement("div");
@@ -218,5 +225,5 @@ const resetGame = () => {
   location.reload();
 };
 
+startButton.addEventListener("click", main);
 resetButton.addEventListener("click", resetGame);
-main();
