@@ -39,7 +39,7 @@ Players shall have six attempts to guess a five-letter word. After each guess, t
 
 ## Deployment
 
-The game is deployed on GitHub pages, which can be played here: jonathangoh95.github.io/wordle-project/
+The game is deployed on GitHub pages, which can be played here: [jonathangoh95.github.io/wordle-project/](https://jonathangoh95.github.io/wordle-project/)
 
 ## Summary
 
