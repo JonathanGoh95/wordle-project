@@ -43,6 +43,10 @@ The game is deployed on GitHub pages, which can be played here: jonathangoh95.gi
 
 ## Summary
 
+As an enjoyer of puzzle games in general, such as Crosswords and Sudoku, Wordle manages to capture that desire to solve an unknown word within a limited number of attempts. It challenges the player to think through all the possible words that could ultimately lead to the answer as the number of attempts decreases each time.
+
+In addition to what has been stated above, the implementation of this Wordle project definitely helps to reinforce my knowledge and understanding of the JavaScript language; such as the use of arrays and seeing how the code flows from function to function, along with demonstrating my HTML and CSS capabilities in one complete package.
+
 ## Project Wireframes
 
 ![Wireframe](https://github.com/JonathanGoh95/wordle-project/blob/main/images/ProjectWireframes.png)
