@@ -96,6 +96,10 @@ h3 {
   border-radius: 5px;
 }
 
+#resetGame:hover {
+  cursor: pointer;
+}
+
 #startGame {
   padding: 10px 20px;
   font-size: 28px;
@@ -103,6 +107,10 @@ h3 {
   margin: 20px 0;
   background-color: lightgreen;
   border-radius: 5px;
+}
+
+#startGame:hover {
+  cursor: pointer;
 }
 
 #instructions {
@@ -121,4 +129,22 @@ select {
   width: 50px;
   height: 25px;
   font-size: 20px;
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#mute {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+#mute:hover {
+  cursor: pointer;
 }

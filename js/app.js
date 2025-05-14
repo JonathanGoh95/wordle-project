@@ -3,11 +3,27 @@ import { wordsToGuess } from "./wordsToGuess.js";
 
 //Declaration of Variables
 const headerTitle = document.querySelector("h1");
-// const numberOfGuesses = 6;
 const instructions = document.getElementById("instructions");
 const resetButton = document.getElementById("resetGame");
 const startButton = document.getElementById("startGame");
+const muteButton = document.getElementById("mute");
 const keyboard = document.getElementById("keyboardLayout");
+//Music Files
+const music1 = new Audio(
+  "../music/chill-work-lofi-cozy-chill-music-336572.mp3"
+);
+const music2 = new Audio("../music/better-day-186374.mp3");
+const music3 = new Audio(
+  "../music/good-night-lofi-cozy-chill-music-160166.mp3"
+);
+const music4 = new Audio(
+  "../music/chill-lofi-music-interior-lounge-256260.mp3"
+);
+const music5 = new Audio("../music/lofi-chill-music-297444.mp3");
+//Consolidate into an Array
+const musicArr = [music1, music2, music3, music4, music5];
+//Selects a track randomly
+const selectedMusic = musicArr[Math.floor(Math.random() * musicArr.length)];
 let wordlen = document.getElementById("wordlen");
 let attempts = document.getElementById("attempts");
 let gameBoard = document.getElementById("gameBoard");
@@ -15,25 +31,30 @@ let currentGuess = []; //Array for holding the current word by user
 let nextLetter = 0;
 let remainingGuesses;
 let selectedWord;
-//Selects a random word to start playing
-//Outputs the answer to the console for testing purposes
+
 //Function Declarations
-//Creates the game board using a nested for loop
 const main = () => {
+  muteButton.disabled = false;
+  selectedMusic.play();
+  selectedMusic.loop = true;
+  //Adds 'KeyUp' Event Listener for checking input
   document.addEventListener("keyup", handleKeyUp);
+  //Selects a random word to start playing
   selectedWord =
     wordsToGuess[Number(wordlen.value) - 4][
       Math.floor(Math.random() * wordsToGuess[Number(wordlen.value) - 4].length)
     ];
   console.log(wordlen.value);
   console.log(attempts.value);
+  //Outputs the answer to the console for testing purposes
   console.log(selectedWord);
   remainingGuesses = Number(attempts.value);
   console.log(remainingGuesses);
   instructions.style.display = "none";
   keyboard.style.display = "flex";
   resetButton.style.display = "block";
-  //Creates a number of divs with the class name of 'rowOfLetters', based on the value of the 'numberOfGuesses' variable
+  //Creates the game board using a nested for loop
+  //Creates a number of divs with the class name of 'rowOfLetters', based on the value of the 'attempts' variable
   for (let i = 0; i < Number(attempts.value); i++) {
     let rowOfLetters = document.createElement("div");
     rowOfLetters.className = "rowOfLetters";
@@ -234,8 +255,20 @@ const resetGame = () => {
   rows.forEach((row) => {
     row.remove();
   });
+  //Removes the Event Listener when Reset Game button is clicked/pressed. Start Button will add it back in the main() function.
   document.removeEventListener("keyup", handleKeyUp);
 };
 
 startButton.addEventListener("click", main);
 resetButton.addEventListener("click", resetGame);
+//Mute Button Event Listener
+muteButton.addEventListener("click", () => {
+  //Mute/Unmute Music and change icon accordingly
+  if (!selectedMusic.muted) {
+    selectedMusic.muted = true;
+    muteButton.src = "images/unmute_icon.png";
+  } else {
+    selectedMusic.muted = false;
+    muteButton.src = "images/mute_icon.png";
+  }
+});
