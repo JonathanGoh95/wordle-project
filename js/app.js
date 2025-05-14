@@ -22,8 +22,7 @@ const music4 = new Audio(
 const music5 = new Audio("../music/lofi-chill-music-297444.mp3");
 //Consolidate into an Array
 const musicArr = [music1, music2, music3, music4, music5];
-//Selects a track randomly
-const selectedMusic = musicArr[Math.floor(Math.random() * musicArr.length)];
+let selectedMusic;
 let wordlen = document.getElementById("wordlen");
 let attempts = document.getElementById("attempts");
 let gameBoard = document.getElementById("gameBoard");
@@ -34,7 +33,8 @@ let selectedWord;
 
 //Function Declarations
 const main = () => {
-  muteButton.disabled = false;
+  //Selects a track randomly and plays it in a loop. Changes the music track after each reset.
+  selectedMusic = musicArr[Math.floor(Math.random() * musicArr.length)];
   selectedMusic.play();
   selectedMusic.loop = true;
   //Adds 'KeyUp' Event Listener for checking input
@@ -257,6 +257,8 @@ const resetGame = () => {
   });
   //Removes the Event Listener when Reset Game button is clicked/pressed. Start Button will add it back in the main() function.
   document.removeEventListener("keyup", handleKeyUp);
+  selectedMusic.pause();
+  selectedMusic.currentTime = 0;
 };
 
 startButton.addEventListener("click", main);
