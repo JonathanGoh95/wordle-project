@@ -8,6 +8,7 @@ const resetButton = document.getElementById("resetGame");
 const startButton = document.getElementById("startGame");
 const muteButton = document.getElementById("mute");
 const keyboard = document.getElementById("keyboardLayout");
+const toggleModeButton = document.getElementById("toggleMode");
 //Music Files
 const music1 = new Audio(
   "../music/chill-work-lofi-cozy-chill-music-336572.mp3"
@@ -37,6 +38,9 @@ const main = () => {
   selectedMusic = musicArr[Math.floor(Math.random() * musicArr.length)];
   selectedMusic.play();
   selectedMusic.loop = true;
+  selectedMusic.volume = 0.5;
+  //Mute Button Event Listener
+  muteButton.addEventListener("click", toggleMusic);
   //Adds 'KeyUp' Event Listener for checking input
   document.addEventListener("keyup", handleKeyUp);
   //Selects a random word to start playing
@@ -240,6 +244,41 @@ document.getElementById("keyboardLayout").addEventListener("click", (event) => {
   document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
 });
 
+const setMode = (mode) => {
+  document.body.classList.remove("light-mode", "dark-mode");
+  document.body.classList.add(mode + "-mode");
+  // Optionally update button text/icon
+  toggleModeButton.textContent =
+    mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+  // Save preference
+  localStorage.setItem("colorMode", mode);
+};
+
+// Toggle event
+toggleModeButton.addEventListener("click", () => {
+  const currentMode = document.body.classList.contains("dark-mode")
+    ? "dark"
+    : "light";
+  setMode(currentMode === "dark" ? "light" : "dark");
+});
+
+// On page load, set mode from saved preference or default to light
+window.addEventListener("DOMContentLoaded", () => {
+  const savedMode = localStorage.getItem("colorMode") || "light";
+  setMode(savedMode);
+});
+
+const toggleMusic = () => {
+  //Mute/Unmute Music and change icon accordingly
+  if (!selectedMusic.muted) {
+    selectedMusic.muted = true;
+    muteButton.src = "images/unmute_icon.png";
+  } else {
+    selectedMusic.muted = false;
+    muteButton.src = "images/mute_icon.png";
+  }
+};
+
 const resetGame = () => {
   remainingGuesses = "";
   currentGuess = []; //Array for holding the current word by user
@@ -259,18 +298,8 @@ const resetGame = () => {
   document.removeEventListener("keyup", handleKeyUp);
   selectedMusic.pause();
   selectedMusic.currentTime = 0;
+  muteButton.removeEventListener("click", toggleMusic);
 };
 
 startButton.addEventListener("click", main);
 resetButton.addEventListener("click", resetGame);
-//Mute Button Event Listener
-muteButton.addEventListener("click", () => {
-  //Mute/Unmute Music and change icon accordingly
-  if (!selectedMusic.muted) {
-    selectedMusic.muted = true;
-    muteButton.src = "images/unmute_icon.png";
-  } else {
-    selectedMusic.muted = false;
-    muteButton.src = "images/mute_icon.png";
-  }
-});

@@ -20,7 +20,14 @@
   </head>
   <body>
     <div id="controls">
-      <img id="mute" src="images/mute_icon.png" />
+      <img
+        title="Mutes/Unmutes the Background Music"
+        id="mute"
+        src="images/mute_icon.png"
+      />
+      <button title="Toggles between Light/Dark mode" id="toggleMode">
+        🌙 Dark Mode
+      </button>
     </div>
     <h1>Wordle Game</h1>
     <div id="instructions">
@@ -64,7 +71,7 @@
           <option value="10">10</option>
         </select>
       </div>
-      <button id="startGame">Start Game</button>
+      <button title="Starts the game" id="startGame">Start Game</button>
     </div>
     <div id="gameBoard"></div>
     <div id="keyboardLayout">
@@ -102,7 +109,7 @@
         <button class="keyboardButton">m</button>
         <button class="keyboardButton">Enter</button>
       </div>
-      <button id="resetGame">Reset Game</button>
+      <button title="Resets the game" id="resetGame">Reset Game</button>
     </div>
   </body>
   <script defer src="./js/app.js" type="module"></script>
