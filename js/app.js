@@ -10,17 +10,11 @@ const muteButton = document.getElementById("mute");
 const keyboard = document.getElementById("keyboardLayout");
 const toggleModeButton = document.getElementById("toggleMode");
 //Music File Variables
-const music1 = new Audio(
-  "../music/chill-work-lofi-cozy-chill-music-336572.mp3"
-);
-const music2 = new Audio("../music/better-day-186374.mp3");
-const music3 = new Audio(
-  "../music/good-night-lofi-cozy-chill-music-160166.mp3"
-);
-const music4 = new Audio(
-  "../music/chill-lofi-music-interior-lounge-256260.mp3"
-);
-const music5 = new Audio("../music/lofi-chill-music-297444.mp3");
+const music1 = new Audio("music/chill-work-lofi-cozy-chill-music-336572.mp3");
+const music2 = new Audio("music/better-day-186374.mp3");
+const music3 = new Audio("music/good-night-lofi-cozy-chill-music-160166.mp3");
+const music4 = new Audio("music/chill-lofi-music-interior-lounge-256260.mp3");
+const music5 = new Audio("music/lofi-chill-music-297444.mp3");
 //Consolidate into an Array
 const musicArr = [music1, music2, music3, music4, music5];
 let selectedMusic;
@@ -250,7 +244,7 @@ const setMode = (mode) => {
   // Optionally update button text/icon
   toggleModeButton.textContent =
     mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
-  // Save preference
+  // Save preference to local storage
   localStorage.setItem("colorMode", mode);
 };
 
