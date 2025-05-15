@@ -25,7 +25,7 @@
 
 ## Game Description
 
-This is the famous Wordle game that exploded in popularity during the COVID period due to people being cooped up in their living quarters and looking for something interesting, fun and thought-provoking to sustain their attention span. This game was designed and implemented using HTML, CSS, and Javascript, while attending the Software Engineering Bootcamp course at General Assembly.
+This is the famous Wordle game that exploded in popularity during the COVID period due to people being cooped up in their living quarters and looking for something interesting, fun and thought-provoking to sustain their attention span. This game was designed and implemented using HTML, CSS, and JavaScript, while attending the Software Engineering Bootcamp (SEB) course at General Assembly.
 
 For a brief history on the inception of Wordle, it was created in 2021 by software engineer Josh Wardle as a personal game for his partner, who loved word games. Despite being shared privately initially, it quickly gained popularity after Wardle released it publicly in October 2021.
 
@@ -46,6 +46,10 @@ The game is deployed on GitHub pages, which can be played here: [jonathangoh95.g
 As an enjoyer of puzzle games in general, such as Crosswords and Sudoku, Wordle manages to capture that desire to solve an unknown word within a limited number of attempts. It challenges the player to think through all the possible words that could ultimately lead to the answer as the number of attempts decreases each time.
 
 In addition to what has been stated above, the implementation of this Wordle project definitely helps to reinforce my knowledge and understanding of the JavaScript language; such as the use of arrays and seeing how the code flows from function to function, along with demonstrating my HTML and CSS capabilities in one complete package.
+
+### Level Up Content
+- Background Music with a Mute/Unmute button
+- Light/Dark Mode button
 
 ## Project Wireframes
 
