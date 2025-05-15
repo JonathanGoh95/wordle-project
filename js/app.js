@@ -133,18 +133,14 @@ const checkAnswer = () => {
       Number(attempts.value) - remainingGuesses
     ];
   let guessString = "";
-  //Converts the selected word/answer from the wordsToGuess.js file to an array for checking against the user input
   let rightGuess = [...selectedWord];
-  //Appends the user input to an empty string for checking
   for (const val of currentGuess) {
     guessString += val;
   }
-  //When the user did not enter enough letters to fill up the word limit
   if (guessString.length !== Number(wordlen.value)) {
     toastr.error("Not enough letters!");
     return;
   }
-  //When the word input a word that does not exist in the respective word length array
   if (
     !wordsToGuess[Number(wordlen.value) - 4].some(
       (word) => word === guessString
@@ -154,30 +150,34 @@ const checkAnswer = () => {
     return;
   }
 
-  //Compares the user input with the word array for validation
+  // First pass: mark greens
+  //Remaining letters after the second pass will be shaded grey.
+  let letterColors = Array(Number(wordlen.value)).fill("grey");
   for (let i = 0; i < Number(wordlen.value); i++) {
-    let letterColor = "";
+    if (currentGuess[i] === rightGuess[i]) {
+      letterColors[i] = "green";
+      rightGuess[i] = null; // Mark as used
+    }
+  }
+
+  // Second pass: mark yellows
+  for (let i = 0; i < Number(wordlen.value); i++) {
+    if (letterColors[i] === "grey") {
+      let letterIndex = rightGuess.indexOf(currentGuess[i]);
+      if (letterIndex !== -1 && currentGuess[i] !== selectedWord[i]) {
+        letterColors[i] = "yellow";
+        rightGuess[letterIndex] = null; // Mark as used
+      }
+    }
+  }
+
+  // Animate shading
+  for (let i = 0; i < Number(wordlen.value); i++) {
     let box = row.children[i];
     let letter = currentGuess[i];
-
-    let letterPosition = rightGuess.indexOf(currentGuess[i]);
-    // Check if letter is in the correct position. If letter does not exist in word, shade it grey.
-    if (letterPosition === -1) {
-      letterColor = "grey";
-    } else {
-      if (currentGuess[i] === rightGuess[i]) {
-        // Shades the letter box green if letter is in the correct position
-        letterColor = "green";
-      } else {
-        // Shades the letter box yellow if letter is in the word but in the wrong position
-        letterColor = "yellow";
-      }
-      rightGuess[letterPosition] = "#";
-    }
-    //Shade Animation
+    let letterColor = letterColors[i];
     let delay = 500 * i;
     setTimeout(() => {
-      //shade box
       box.style.backgroundColor = letterColor;
       shadeKeyboard(letter, letterColor);
     }, delay);
