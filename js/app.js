@@ -1,7 +1,7 @@
 //Module Imports
 import { wordsToGuess } from "./wordsToGuess.js";
 
-//Declaration of Variables
+//Declaration of Variables from HTML Elements
 const headerTitle = document.querySelector("h1");
 const instructions = document.getElementById("instructions");
 const resetButton = document.getElementById("resetGame");
@@ -9,7 +9,7 @@ const startButton = document.getElementById("startGame");
 const muteButton = document.getElementById("mute");
 const keyboard = document.getElementById("keyboardLayout");
 const toggleModeButton = document.getElementById("toggleMode");
-//Music Files
+//Music File Variables
 const music1 = new Audio(
   "../music/chill-work-lofi-cozy-chill-music-336572.mp3"
 );
@@ -27,19 +27,20 @@ let selectedMusic;
 let wordlen = document.getElementById("wordlen");
 let attempts = document.getElementById("attempts");
 let gameBoard = document.getElementById("gameBoard");
-let currentGuess = []; //Array for holding the current word by user
+//Array for holding the current word by user
+let currentGuess = [];
 let nextLetter = 0;
 let remainingGuesses;
 let selectedWord;
 
 //Function Declarations
 const main = () => {
-  //Selects a track randomly and plays it in a loop. Changes the music track after each reset.
+  //Selects a track randomly and plays it in a loop at 50% volume. Changes the music track after each reset.
   selectedMusic = musicArr[Math.floor(Math.random() * musicArr.length)];
   selectedMusic.play();
   selectedMusic.loop = true;
   selectedMusic.volume = 0.5;
-  //Mute Button Event Listener
+  //Mute Button Event Listener for muting/unmuting the music.
   muteButton.addEventListener("click", toggleMusic);
   //Adds 'KeyUp' Event Listener for checking input
   document.addEventListener("keyup", handleKeyUp);
@@ -54,6 +55,7 @@ const main = () => {
   console.log(selectedWord);
   remainingGuesses = Number(attempts.value);
   console.log(remainingGuesses);
+  //Hides the instructions and displays the on-screen keyboard and Reset Game button
   instructions.style.display = "none";
   keyboard.style.display = "flex";
   resetButton.style.display = "block";
@@ -74,6 +76,7 @@ const main = () => {
 
 //Input from User Keyboard
 const handleKeyUp = (event) => {
+  //Once number of attempts reaches 0, it will exit this function
   if (remainingGuesses === 0) {
     return;
   }
@@ -85,13 +88,13 @@ const handleKeyUp = (event) => {
     return;
   }
 
-  //Check if the answer is correct each time 'Enter' is clicked/pressed
+  //Checks if the answer is correct each time 'Enter' is clicked/pressed
   if (userInput === "Enter") {
     checkAnswer();
     return;
   }
 
-  //If condition doesn't match alphabetical character or contain multiple characters, skip/ignore event.
+  //If condition doesn't match alphabetical character or contain multiple characters, no characters will be inserted.
   let found = userInput.match(/[a-z]/gi);
   if (!found || found.length > 1) {
     return;
@@ -142,20 +145,22 @@ const checkAnswer = () => {
   for (const val of currentGuess) {
     guessString += val;
   }
-  console.log(guessString.length);
+  //When the user did not enter enough letters to fill up the word limit
   if (guessString.length !== Number(wordlen.value)) {
     toastr.error("Not enough letters!");
     return;
   }
+  //When the word input a word that does not exist in the respective word length array
   if (
     !wordsToGuess[Number(wordlen.value) - 4].some(
       (word) => word === guessString
     )
   ) {
-    toastr.error("This is not a valid word!");
+    toastr.error("This word is not in the list!");
     return;
   }
 
+  //Compares the user input with the word array for validation
   for (let i = 0; i < Number(wordlen.value); i++) {
     let letterColor = "";
     let box = row.children[i];
@@ -186,9 +191,6 @@ const checkAnswer = () => {
 
   //Win Scenario
   if (guessString === selectedWord) {
-    // gameMsg.textContent =
-    //   "Congrats! You guessed the word correctly! Game Over!";
-    // headerTitle.appendChild(gameMsg);
     toastr.success("Congrats! You guessed the word correctly! Game Over!");
     remainingGuesses = 0;
     return;
@@ -201,15 +203,13 @@ const checkAnswer = () => {
       selectedWord = [...selectedWord]
         .map((word) => word.toUpperCase())
         .join("");
-      // gameMsg.innerHTML = `You have ran out of guesses! Game Over!<br />
-      // The right word was: "${selectedWord}"`;
-      // headerTitle.appendChild(gameMsg);
       toastr.error("You have ran out of guesses! Game Over!");
       toastr.info(`The right word was: "${selectedWord}"`);
     }
   }
 };
 
+//Shades the on-screen keyboard accordingly
 const shadeKeyboard = (letter, color) => {
   for (const elem of document.getElementsByClassName("keyboardButton")) {
     if (elem.textContent === letter) {
@@ -286,16 +286,18 @@ const resetGame = () => {
   for (const elem of document.getElementsByClassName("keyboardButton")) {
     elem.style.backgroundColor = "";
   }
+  //Unhides the instructions and hides the keyboard and Reset Game button
   instructions.style.display = "block";
   keyboard.style.display = "none";
   resetButton.style.display = "none";
-
+  //Removes the grid of rows and boxes
   const rows = document.querySelectorAll(".rowOfLetters");
   rows.forEach((row) => {
     row.remove();
   });
   //Removes the Event Listener when Reset Game button is clicked/pressed. Start Button will add it back in the main() function.
   document.removeEventListener("keyup", handleKeyUp);
+  //Pauses the music after the reset and removes the event listener for the mute button. No music should be playing when the game has not yet started.
   selectedMusic.pause();
   selectedMusic.currentTime = 0;
   muteButton.removeEventListener("click", toggleMusic);
