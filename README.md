@@ -66,6 +66,8 @@ In addition to what has been stated above, the implementation of this Wordle pro
 ## References/ Citations
 
 - Background Music sourced from: [https://pixabay.com/music/](https://pixabay.com/music/)
-- 4-Letter Word Array: [https://gist.github.com/collegeman/79bd777c6747c08237d0](https://gist.github.com/collegeman/79bd777c6747c08237d0)
+- 4-Letter Word Array: [https://github.com/getify/dwordly-game/blob/main/four-letter-words.json](https://github.com/getify/dwordly-game/blob/main/four-letter-words.json)
 - 5-Letter Word Array: [https://github.com/cheaderthecoder/5-Letter-words/blob/main/words.json](https://github.com/cheaderthecoder/5-Letter-words/blob/main/words.json)
 - 6-Letter Word Array: [https://github.com/getify/dwordly-game/blob/main/six-letter-words.json](https://github.com/getify/dwordly-game/blob/main/six-letter-words.json)
+- Toastr Library for Notifications: [https://codeseven.github.io/toastr/](https://codeseven.github.io/toastr/)
+- Canvas Confetti for Game Win: [https://github.com/catdad/canvas-confetti](https://github.com/catdad/canvas-confetti)
