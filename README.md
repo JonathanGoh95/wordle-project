@@ -25,7 +25,7 @@
 
 ## Game Description
 
-This is the famous Wordle game that exploded in popularity during the COVID period due to people being cooped up in their living quarters and looking for something interesting, fun and thought-provoking to sustain their attention span. This game was designed and implemented using HTML, CSS, and Javascript, while attending the Software Engineering Bootcamp course at General Assembly.
+This is the famous Wordle game that exploded in popularity during the COVID period due to people being cooped up in their living quarters and looking for something interesting, fun and thought-provoking to sustain their attention span. This game was designed and implemented using HTML, CSS, and JavaScript, while attending the Software Engineering Bootcamp (SEB) course at General Assembly.
 
 For a brief history on the inception of Wordle, it was created in 2021 by software engineer Josh Wardle as a personal game for his partner, who loved word games. Despite being shared privately initially, it quickly gained popularity after Wardle released it publicly in October 2021.
 
