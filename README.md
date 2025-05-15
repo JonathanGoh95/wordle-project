@@ -51,6 +51,7 @@ In addition to what has been stated above, the implementation of this Wordle pro
 
 - Background Music with a Mute/Unmute button
 - Light/Dark Mode button
+- Confetti Animation upon Player Win
 
 ## Project Wireframes
 
