@@ -51,6 +51,12 @@ In addition to what has been stated above, the implementation of this Wordle pro
 
 ![Wireframe](https://github.com/JonathanGoh95/wordle-project/blob/main/images/ProjectWireframes.png)
 
+## Game Screenshots
+
+![Main Page](https://github.com/JonathanGoh95/wordle-project/blob/main/images/Game_Screenshot_1.jpg)
+
+![Game Page](https://github.com/JonathanGoh95/wordle-project/blob/main/images/Game_Screenshot_2.jpg)
+
 ## References/ Citations
 
 - Background Music sourced from: [https://pixabay.com/music/](https://pixabay.com/music/)
