@@ -186,6 +186,14 @@ const checkAnswer = () => {
   //Win Scenario
   if (guessString === selectedWord) {
     toastr.success("Congrats! You guessed the word correctly! Game Over!");
+    // Confetti celebration with customization!
+    if (typeof confetti === "function") {
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 },
+      });
+    }
     remainingGuesses = 0;
     return;
     //Lose Scenario
