@@ -109,6 +109,7 @@ const insertLetter = (userInput) => {
       Number(attempts.value) - remainingGuesses
     ];
   let box = row.children[nextLetter];
+  animateCSS(box, "heartBeat");
   box.textContent = userInput;
   box.classList.add("filledBox");
   currentGuess.push(userInput);
@@ -178,6 +179,7 @@ const checkAnswer = () => {
     let letterColor = letterColors[i];
     let delay = 500 * i;
     setTimeout(() => {
+      animateCSS(box, "flip");
       box.style.backgroundColor = letterColor;
       shadeKeyboard(letter, letterColor);
     }, delay);
@@ -304,6 +306,26 @@ const resetGame = () => {
   selectedMusic.currentTime = 0;
   muteButton.removeEventListener("click", toggleMusic);
 };
+
+const animateCSS = (element, animation, prefix = "animate__") =>
+  // We create a Promise and return it
+  new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`;
+    // const node = document.querySelector(element);
+    const node = element;
+    node.style.setProperty("--animate-duration", "0.3s");
+
+    node.classList.add(`${prefix}animated`, animationName);
+
+    // When the animation ends, we clean the classes and resolve the Promise
+    function handleAnimationEnd(event) {
+      event.stopPropagation();
+      node.classList.remove(`${prefix}animated`, animationName);
+      resolve("Animation ended");
+    }
+
+    node.addEventListener("animationend", handleAnimationEnd, { once: true });
+  });
 
 startButton.addEventListener("click", main);
 resetButton.addEventListener("click", resetGame);
