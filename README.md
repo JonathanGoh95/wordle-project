@@ -71,3 +71,4 @@ In addition to what has been stated above, the implementation of this Wordle pro
 - 6-Letter Word Array: [https://github.com/getify/dwordly-game/blob/main/six-letter-words.json](https://github.com/getify/dwordly-game/blob/main/six-letter-words.json)
 - Toastr Library for Notifications: [https://codeseven.github.io/toastr/](https://codeseven.github.io/toastr/)
 - Canvas Confetti for Game Win: [https://github.com/catdad/canvas-confetti](https://github.com/catdad/canvas-confetti)
+- Animate.css Library: [https://animate.style/#javascript](https://animate.style/#javascript)
