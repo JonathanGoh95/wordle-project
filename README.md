@@ -72,3 +72,4 @@ In addition to what has been stated above, the implementation of this Wordle pro
 - Toastr Library for Notifications: [https://codeseven.github.io/toastr/](https://codeseven.github.io/toastr/)
 - Canvas Confetti for Game Win: [https://github.com/catdad/canvas-confetti](https://github.com/catdad/canvas-confetti)
 - Animate.css Library: [https://animate.style/#javascript](https://animate.style/#javascript)
+- FreeCodeCamp Article: [https://www.freecodecamp.org/news/build-a-wordle-clone-in-javascript/](https://www.freecodecamp.org/news/build-a-wordle-clone-in-javascript/)
