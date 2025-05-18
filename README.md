@@ -50,7 +50,7 @@ In addition to what has been stated above, the implementation of this Wordle pro
 ### Level Up Content
 
 - Background Music with a Mute/Unmute button
-- Light/Dark Mode button
+- Light/Dark Mode button using localStorage to preserve user selection
 - Confetti Animation upon Player Win
 
 ## Project Wireframes
