@@ -15,6 +15,7 @@ const music2 = new Audio("music/better-day-186374.mp3");
 const music3 = new Audio("music/good-night-lofi-cozy-chill-music-160166.mp3");
 const music4 = new Audio("music/chill-lofi-music-interior-lounge-256260.mp3");
 const music5 = new Audio("music/lofi-chill-music-297444.mp3");
+const confettisfx = new Audio("music/confetti_sound_effect.mp3");
 //Consolidate into an Array
 const musicArr = [music1, music2, music3, music4, music5];
 let selectedMusic;
@@ -188,7 +189,8 @@ const checkAnswer = () => {
   //Win Scenario
   if (guessString === selectedWord) {
     toastr.success("Congrats! You guessed the word correctly! Game Over!");
-    // Confetti celebration with customization!
+    // Confetti celebration with customization and SFX!
+    confettisfx.play();
     if (typeof confetti === "function") {
       confetti({
         particleCount: 200,
