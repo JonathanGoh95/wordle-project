@@ -53,6 +53,7 @@ In addition to what has been stated above, the implementation of this Wordle pro
 - Confetti Animation upon Player Win (Sourced from Canvas Confetti Library)
 - Background Music with a Mute/Unmute button (Sourced from Pixabay Music)
 - Tile Animations (Sourced from Animate.css Library)
+- Game Statistics such as Number of Games Played, Win Percentage, Winning Streaks, etc. to be stored in localStorage. An option to reset/clear the stats has been added as well.
 
 ## Project Wireframes
 
