@@ -23,7 +23,7 @@ body.dark-mode {
 
 p {
   text-align: center;
-  font-size: 32px;
+  /* font-size: 32px; */
   font-style: italic;
   margin: 20px 0 -20px 0;
 }
@@ -130,7 +130,7 @@ h3 {
 
 #instructions {
   text-align: center;
-  font-size: 40px;
+  font-size: 36px;
   font-style: italic;
 }
 
@@ -152,14 +152,6 @@ select {
   right: 10px;
 }
 
-#toggleMode {
-  border-radius: 20px;
-  font-family: "Tagesschrift", Tahoma, sans-serif;
-  font-style: italic;
-  font-size: 15px;
-  padding: 5px 10px;
-}
-
 #mute {
   width: 50px;
   height: 50px;
@@ -170,10 +162,54 @@ select {
   margin: 0 0 5px 0;
 }
 
+#toggleMode {
+  border-radius: 20px;
+  font-family: "Tagesschrift", Tahoma, sans-serif;
+  font-style: italic;
+  font-size: 15px;
+  padding: 5px 10px;
+  margin: 0 0 10px 0;
+}
+
+#stats {
+  border-radius: 20px;
+  font-family: "Tagesschrift", Tahoma, sans-serif;
+  font-style: italic;
+  font-size: 15px;
+  padding: 5px 10px;
+  margin: 0 0 10px 0;
+}
+
+#resetStats {
+  border-radius: 20px;
+  font-family: "Tagesschrift", Tahoma, sans-serif;
+  font-style: italic;
+  font-size: 15px;
+  padding: 5px 10px;
+}
+
 #mute:hover {
   cursor: pointer;
 }
 
 #toggleMode:hover {
   cursor: pointer;
+}
+
+#stats:hover {
+  cursor: pointer;
+}
+
+#resetStats:hover {
+  cursor: pointer;
+}
+
+#statsInfo {
+  font-size: 54px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

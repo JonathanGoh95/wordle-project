@@ -9,6 +9,8 @@ const startButton = document.getElementById("startGame");
 const muteButton = document.getElementById("mute");
 const keyboard = document.getElementById("keyboardLayout");
 const toggleModeButton = document.getElementById("toggleMode");
+const statsButton = document.getElementById("stats");
+const resetStatsButton = document.getElementById("resetStats");
 //Music File Variables
 const music1 = new Audio("music/chill-work-lofi-cozy-chill-music-336572.mp3");
 const music2 = new Audio("music/better-day-186374.mp3");
@@ -22,6 +24,7 @@ let selectedMusic;
 let wordlen = document.getElementById("wordlen");
 let attempts = document.getElementById("attempts");
 let gameBoard = document.getElementById("gameBoard");
+let started = false;
 //Array for holding the current word by user
 let currentGuess = [];
 let nextLetter = 0;
@@ -30,12 +33,13 @@ let selectedWord;
 
 //Function Declarations
 const main = () => {
+  started = true;
   //Selects a track randomly and plays it in a loop at 50% volume. Changes the music track after each reset.
   selectedMusic = musicArr[Math.floor(Math.random() * musicArr.length)];
   selectedMusic.play();
   selectedMusic.loop = true;
   selectedMusic.volume = 0.5;
-  //Mute Button Event Listener for muting/unmuting the music.
+  //Mute Button Event Listener for muting/unmuting the background music.
   muteButton.addEventListener("click", toggleMusic);
   //Adds 'KeyUp' Event Listener for checking input
   document.addEventListener("keyup", handleKeyUp);
@@ -44,8 +48,8 @@ const main = () => {
     wordsToGuess[Number(wordlen.value) - 4][
       Math.floor(Math.random() * wordsToGuess[Number(wordlen.value) - 4].length)
     ];
-  console.log(wordlen.value);
-  console.log(attempts.value);
+  // console.log(wordlen.value);
+  // console.log(attempts.value);
   //Outputs the answer to the console for testing purposes
   console.log(selectedWord);
   remainingGuesses = Number(attempts.value);
@@ -178,7 +182,7 @@ const checkAnswer = () => {
     let box = row.children[i];
     let letter = currentGuess[i];
     let letterColor = letterColors[i];
-    let delay = 500 * i;
+    let delay = 350 * i;
     setTimeout(() => {
       animateCSS(box, "flip");
       box.style.backgroundColor = letterColor;
@@ -188,6 +192,7 @@ const checkAnswer = () => {
 
   //Win Scenario
   if (guessString === selectedWord) {
+    updateStats(true);
     toastr.success("Congrats! You guessed the word correctly! Game Over!");
     // Confetti celebration with customization and SFX!
     confettisfx.play();
@@ -206,6 +211,7 @@ const checkAnswer = () => {
     currentGuess = [];
     nextLetter = 0;
     if (remainingGuesses === 0) {
+      updateStats(false);
       selectedWord = [...selectedWord]
         .map((word) => word.toUpperCase())
         .join("");
@@ -260,7 +266,7 @@ const setMode = (mode) => {
   localStorage.setItem("colorMode", mode);
 };
 
-// Toggle event
+// Toggle Light/Dark Mode
 toggleModeButton.addEventListener("click", () => {
   const currentMode = document.body.classList.contains("dark-mode")
     ? "dark"
@@ -307,8 +313,10 @@ const resetGame = () => {
   selectedMusic.pause();
   selectedMusic.currentTime = 0;
   muteButton.removeEventListener("click", toggleMusic);
+  started = false;
 };
 
+//Animate CSS Library (Code verbatim from Source)
 const animateCSS = (element, animation, prefix = "animate__") =>
   // We create a Promise and return it
   new Promise((resolve, reject) => {
@@ -329,5 +337,98 @@ const animateCSS = (element, animation, prefix = "animate__") =>
     node.addEventListener("animationend", handleAnimationEnd, { once: true });
   });
 
+const getStats = () => {
+  const stats = JSON.parse(localStorage.getItem("wordleStats"));
+  return (
+    stats || {
+      gamesPlayed: 0,
+      gamesWon: 0,
+      currentStreak: 0,
+      bestStreak: 0,
+    }
+  );
+};
+
+const saveStats = (stats) => {
+  localStorage.setItem("wordleStats", JSON.stringify(stats));
+};
+
+const updateStats = (win) => {
+  let stats = getStats();
+  stats.gamesPlayed++;
+  if (win) {
+    stats.gamesWon++;
+    stats.currentStreak++;
+    if (stats.currentStreak > stats.bestStreak) {
+      stats.bestStreak = stats.currentStreak;
+    }
+  } else {
+    stats.currentStreak = 0;
+  }
+  saveStats(stats);
+};
+
+const showStats = () => {
+  const stats = getStats();
+  const existingStats = document.getElementById("statsInfo");
+  const rows = document.querySelectorAll(".rowOfLetters");
+
+  if (existingStats) {
+    // Hide stats and restore UI
+    existingStats.remove();
+    if (started) {
+      rows.forEach((row) => {
+        row.style.display = "flex";
+      });
+      keyboard.style.display = "flex";
+    } else {
+      instructions.style.display = "block";
+    }
+    return;
+  }
+
+  if (started) {
+    rows.forEach((row) => {
+      row.style.display = "none";
+    });
+    keyboard.style.display = "none";
+  } else {
+    instructions.style.display = "none";
+  }
+  let statsInfo = document.createElement("div");
+  statsInfo.id = "statsInfo";
+  let gamesPlayed = document.createElement("p");
+  let gamesWon = document.createElement("p");
+  let winPercent = document.createElement("p");
+  let currentStreak = document.createElement("p");
+  let bestStreak = document.createElement("p");
+  const statsArr = [
+    gamesPlayed,
+    gamesWon,
+    winPercent,
+    currentStreak,
+    bestStreak,
+  ];
+  for (let i = 0; i < statsArr.length; i++) {
+    statsInfo.appendChild(statsArr[i]);
+  }
+  instructions.after(statsInfo);
+  gamesPlayed.textContent = `Games Played: ${stats.gamesPlayed}`;
+  gamesWon.textContent = `Games Won: ${stats.gamesWon}`;
+  winPercent.textContent = `Win %: ${
+    stats.gamesPlayed
+      ? Math.round((stats.gamesWon / stats.gamesPlayed) * 100)
+      : 0
+  }`;
+  currentStreak.textContent = `Current Streak: ${stats.currentStreak}`;
+  bestStreak.textContent = `Best Streak: ${stats.bestStreak}`;
+};
+
+const resetStats = () => {
+  localStorage.clear();
+};
+
 startButton.addEventListener("click", main);
 resetButton.addEventListener("click", resetGame);
+statsButton.addEventListener("click", showStats);
+resetStatsButton.addEventListener("click", resetStats);
