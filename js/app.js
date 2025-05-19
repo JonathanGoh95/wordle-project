@@ -425,6 +425,9 @@ const showStats = () => {
 };
 
 const resetStats = () => {
+  toastr.info(
+    "Game Statistics have been reset/cleared. Click the 📊 Stats Button to return to the main page."
+  );
   localStorage.clear();
 };
 
