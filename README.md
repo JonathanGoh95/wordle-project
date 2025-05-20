@@ -31,7 +31,7 @@ For a brief history on the inception of Wordle, it was created in 2021 by softwa
 
 ## Concept of Wordle/ How to Play
 
-Players shall have six attempts to guess a five-letter word. After each guess, the game will provide feedback via the guess display and the on-screen keyboard:
+Players shall have six attempts to guess a five-letter word, which can also be customized according to the user preference. After each guess, the game will provide feedback via the guess display and the on-screen keyboard:
 
 - Green tiles indicate that the correct letters are in the correct position
 - Yellow means that the letter is in the word but in the wrong position
